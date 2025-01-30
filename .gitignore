@@ -1,0 +1,45 @@
+# Entorno virtual
+venv/
+.venv/
+env/
+
+# Archivos de configuración local
+*.env
+*.local
+settings/local.py
+
+# Archivos de la base de datos
+*.sqlite3
+*.db
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de medios y estáticos (si no los versionas)
+media/
+staticfiles/
+
+# Archivos de logs
+*.log
+
+# Archivos de migraciones (opcional, dependiendo de tu flujo de trabajo)
+*/migrations/*
+!*/migrations/__init__.py
+
+# Archivos de dependencias (puedes versionar requirements.txt)
+*.egg-info/
+dist/
+build/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
