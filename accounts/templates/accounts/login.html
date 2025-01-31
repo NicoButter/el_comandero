@@ -1,10 +1,13 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión - El Comandero</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   
     <link rel="stylesheet" href="{% static 'accounts/css/login_styles.css' %}">
 
@@ -14,7 +17,7 @@
         <h2>Iniciar sesión</h2>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}  <!-- Muestra el formulario de autenticación -->
+            {{ form.as_p }}  
             <button type="submit">Iniciar sesión</button>
         </form>
     </div>
