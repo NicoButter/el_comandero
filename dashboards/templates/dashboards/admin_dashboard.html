@@ -6,6 +6,17 @@
 <div class="dashboard-content">
     <h2>Bienvenido, Administrador</h2>
     <p>Este es tu panel de control.</p>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Agregar Insumo</h5>
+          <p class="card-text">Haz clic aquí para agregar un nuevo insumo al sistema.</p>
+          <a href="{% url 'dashboards:agregar_insumo_dashboard' %}" class="btn btn-primary">Ir a Agregar Insumo</a>
+        </div>
+      </div>
+
+      
+      
     <!-- Aquí puedes agregar más contenido específico para el admin -->
 </div>
 {% endblock %}

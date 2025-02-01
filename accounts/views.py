@@ -6,7 +6,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 from django.contrib.auth import logout as auth_logout
 from django.views.decorators.http import require_POST
+from django.urls import reverse_lazy
 
+#---------------------------------------------------------------------------------------------------------------
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'  # Plantilla para el login
@@ -16,8 +18,8 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         # Redirige según el rol del usuario
         if self.request.user.rol == 'admin':
-            return reverse_lazy('admin_dashboard')  # URL para el dashboard del admin
+            return reverse_lazy('dashboards:admin_dashboard')  # URL para el dashboard del admin
         else:
-            return reverse_lazy('user_dashboard')
+            return reverse_lazy('dashboards:user_dashboard')
 
 #---------------------------------------------------------------------------------------------------------------

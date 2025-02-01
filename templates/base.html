@@ -18,8 +18,8 @@
             <h1>El Comandero</h1>
             <nav>
                 <ul>
-                    <li><a href="{% url 'admin_dashboard' %}">Dashboard Admin</a></li>
-                    <li><a href="{% url 'user_dashboard' %}">Dashboard Usuario</a></li>
+                    <li><a href="{% url 'dashboards:admin_dashboard' %}">Dashboard Admin</a></li>
+                    <li><a href="{% url 'dashboards:user_dashboard' %}">Dashboard Usuario</a></li>
                     <li>
                         <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
                             {% csrf_token %}
@@ -40,7 +40,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2023 El Comandero. Todos los derechos reservados.</p>
+            <p>&copy; 2025 El Comandero. Todos los derechos reservados.</p>
         </div>
     </footer>
 
