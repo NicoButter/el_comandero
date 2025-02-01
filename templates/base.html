@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}El Comandero{% endblock %}</title>
+    <!-- Cargar archivos estáticos globales -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/global_styles.css' %}">
+    <!-- Bloque para estilos adicionales -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>El Comandero</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'admin_dashboard' %}">Dashboard Admin</a></li>
+                    <li><a href="{% url 'user_dashboard' %}">Dashboard Usuario</a></li>
+                    <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 El Comandero. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bloque para scripts adicionales -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

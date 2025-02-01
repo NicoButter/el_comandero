@@ -23,5 +23,6 @@ from django.urls import reverse_lazy
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('accounts.urls')),
-     path('', RedirectView.as_view(url=reverse_lazy('login')), name='home'),
+    path('dashboards/', include('dashboards.urls')),
+    path('', RedirectView.as_view(url=reverse_lazy('login')), name='home'),
 ]
