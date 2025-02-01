@@ -34,10 +34,28 @@ class PreferenciasUsuarioInline(admin.StackedInline):
 
 @admin.register(Usuario)
 class UsuarioAdmin(UserAdmin):
+    # Campos que se muestran en la lista de usuarios
     list_display = ('username', 'email', 'rol', 'get_equipo_futbol')
     list_filter = ('rol',)  
+
+    # Campos que se muestran en el formulario de creación/edición de usuarios
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Información personal', {'fields': ('first_name', 'last_name', 'email', 'rol')}),
+        ('Permisos', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Fechas importantes', {'fields': ('last_login', 'date_joined')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'password1', 'password2', 'rol'),
+        }),
+    )
+
+    # Inlines
     inlines = [TelefonoInline, DireccionInline, PreferenciasUsuarioInline]
 
+    # Método personalizado para mostrar el equipo de fútbol
     def get_equipo_futbol(self, obj):
         if hasattr(obj, 'preferencias'):
             return obj.preferencias.equipo_futbol
