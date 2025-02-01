@@ -20,7 +20,12 @@
                 <ul>
                     <li><a href="{% url 'admin_dashboard' %}">Dashboard Admin</a></li>
                     <li><a href="{% url 'user_dashboard' %}">Dashboard Usuario</a></li>
-                    <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                    <li>
+                        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>
