@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_styles %}
+  <link rel="stylesheet" href="{% static 'dashboards/css/admin_dashboard_styles.css' %}">
+{% endblock %}
+
+{% block title %}Dashboard Admin - El Comandero{% endblock %}
+
+{% block title %}Agregar Insumo{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Agregar Insumo</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Muestra el formulario con los campos -->
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+{% endblock %}

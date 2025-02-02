@@ -1,22 +1,50 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block extra_styles %}
+  <link rel="stylesheet" href="{% static 'dashboards/css/admin_dashboard_styles.css' %}">
+{% endblock %}
+
 {% block title %}Dashboard Admin - El Comandero{% endblock %}
 
 {% block content %}
-<div class="dashboard-content">
-    <h2>Bienvenido, Administrador</h2>
-    <p>Este es tu panel de control.</p>
 
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Agregar Insumo</h5>
-          <p class="card-text">Haz clic aquí para agregar un nuevo insumo al sistema.</p>
-          <a href="{% url 'dashboards:agregar_insumo_dashboard' %}" class="btn btn-primary">Ir a Agregar Insumo</a>
+<div class="dashboard-container">
+    <h2 class="dashboard-title">Bienvenido, Administrador</h2>
+    <p class="dashboard-subtitle">Gestiona los insumos y productos de manera eficiente.</p>
+
+    <div class="dashboard-grid">
+        <!-- Tarjeta para Agregar Insumo -->
+        <div class="dashboard-card">
+            <div class="dashboard-card-icon">
+                <i class="fas fa-box"></i> 
+            </div>
+            <h5 class="dashboard-card-title">Agregar Insumo</h5>
+            <p class="dashboard-card-text">Registra un nuevo insumo en el sistema.</p>
+            <a href="{% url 'insumos:agregar_insumo' %}" class="dashboard-btn">Añadir</a>
         </div>
-      </div>
 
-      
-      
-    <!-- Aquí puedes agregar más contenido específico para el admin -->
+        <!-- Tarjeta para Ver Insumos -->
+        <div class="dashboard-card">
+            <div class="dashboard-card-icon">
+                <i class="fas fa-list"></i> 
+            </div>
+            <h5 class="dashboard-card-title">Ver Insumos</h5>
+            <p class="dashboard-card-text">Consulta la lista de insumos disponibles.</p>
+            {% comment %} <a href="{% url 'insumo:listar_insumos' %}" class="dashboard-btn">Ver</a> {% endcomment %}
+        </div>
+
+        <!-- Tarjeta para Configuración -->
+        <div class="dashboard-card">
+            <div class="dashboard-card-icon">
+                <i class="fas fa-cogs"></i> 
+            </div>
+            <h5 class="dashboard-card-title">Configuración</h5>
+            <p class="dashboard-card-text">Ajusta las preferencias del sistema.</p>
+            {% comment %} <a href="{% url 'dashboards:configuracion' %}" class="dashboard-btn">Configurar</a> {% endcomment %}
+        </div>
+    </div>
 </div>
+
 {% endblock %}
