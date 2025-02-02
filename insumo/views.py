@@ -12,4 +12,4 @@ def agregar_insumo(request):
     else:
         form = InsumoForm()
 
-    return render(request, 'insumos/agregar_insumo.html', {'form': form})
+    return render(request, 'insumo/agregar_insumo.html', {'form': form})

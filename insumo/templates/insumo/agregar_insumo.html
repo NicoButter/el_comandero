@@ -1,21 +1,42 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block extra_styles %}
-  <link rel="stylesheet" href="{% static 'dashboards/css/admin_dashboard_styles.css' %}">
+  <link rel="stylesheet" href="{% static 'insumo/css/agregar_insumo_styles.css' %}">
 {% endblock %}
-
-{% block title %}Dashboard Admin - El Comandero{% endblock %}
 
 {% block title %}Agregar Insumo{% endblock %}
 
 {% block content %}
     <div class="container">
         <h2>Agregar Insumo</h2>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}  <!-- Muestra el formulario con los campos -->
+            
+            <label for="id_nombre">Nombre:</label>
+            {{ form.nombre }}
+
+            <label for="id_categoria">Categoría:</label>
+            {{ form.categoria }}
+
+            <label for="id_costo">Costo:</label>
+            {{ form.costo }}
+
+            <label for="id_tipo">Tipo de compra:</label>
+            {{ form.tipo }}
+
+            <label for="id_imagen">Imagen:</label>
+            {{ form.imagen }}
+
+            <label for="id_descripcion">Descripción:</label>
+            {{ form.descripcion }}
+
+            <label for="id_cantidad_disponible">Cantidad Disponible:</label>
+            {{ form.cantidad_disponible }}
+
+            <label for="id_unidad_medida">Unidad de Medida:</label>
+            {{ form.unidad_medida }}
+
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
