@@ -1,0 +1,96 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para las tarjetas */
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Estilos para el formulario */
+form.d-flex {
+    gap: 10px;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+/* Estilos para los botones */
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para la lista de categorías */
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* Estilos responsivos */
+@media (max-width: 576px) {
+    .container {
+        padding: 10px;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    .btn-success,
+    .btn-danger {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .list-group-item {
+        padding: 10px;
+    }
+}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import InsumoForm
 from .models import Insumo, Categoria 
 
@@ -40,6 +40,19 @@ def eliminar_insumo(request, insumo_id):
 #----------------------------------------------------------------------------------------------------------
 
 def administrar_categorias(request):
+    categorias_list = Categoria.objects.all().order_by('nombre')  # Ordenar por nombre
+    paginator = Paginator(categorias_list, 10)  # Mostrar 10 categorías por página
+
+    page = request.GET.get('page')  # Obtener el número de página desde la URL
+    try:
+        categorias = paginator.page(page)
+    except PageNotAnInteger:
+        # Si la página no es un número entero, mostrar la primera página
+        categorias = paginator.page(1)
+    except EmptyPage:
+        # Si la página está fuera de rango, mostrar la última página
+        categorias = paginator.page(paginator.num_pages)
+
     if request.method == "POST":
         nueva_categoria = request.POST.get("nueva_categoria")
         if nueva_categoria:
@@ -47,7 +60,6 @@ def administrar_categorias(request):
             messages.success(request, "Categoría agregada correctamente.")
         return redirect("insumos:administrar_categorias")
 
-    categorias = Categoria.objects.all()
     return render(request, "insumo/category_administration.html", {"categorias": categorias})
 
 #----------------------------------------------------------------------------------------------------------

@@ -3,35 +3,102 @@
 {% load static %}
 
 {% block extra_styles %}
-  <link rel="stylesheet" href="{% static 'insumo/css/categorias_styles.css' %}">
+  <link rel="stylesheet" href="{% static 'insumo/css/category_administration_styles.css' %}">
 {% endblock %}
 
 {% block title %}Administrar Categorías{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2>Administrar Categorías</h2>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Administrar Categorías</h2>
 
-        <form method="POST">
-            {% csrf_token %}
-            <label for="nueva_categoria">Nueva Categoría:</label>
-            <input type="text" name="nueva_categoria" class="form-control" placeholder="Nombre de la nueva categoría" required>
-            <button type="submit" class="btn btn-success">Agregar</button>
-        </form>
+        <!-- Formulario para agregar categorías -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <form method="POST" class="d-flex gap-2 align-items-end">
+                    {% csrf_token %}
+                    <div class="flex-grow-1">
+                        <label for="nueva_categoria" class="form-label">Nueva Categoría:</label>
+                        <input type="text" name="nueva_categoria" class="form-control" placeholder="Nombre de la nueva categoría" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Agregar
+                    </button>
+                </form>
+            </div>
+        </div>
 
-        <h3>Categorías Existentes</h3>
-        <ul class="list-group">
-            {% for categoria in categorias %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ categoria.nombre }}
-                    <form method="POST" action="{% url 'insumos:eliminar_categoria' categoria.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    </form>
-                </li>
-            {% empty %}
-                <li class="list-group-item">No hay categorías registradas.</li>
-            {% endfor %}
-        </ul>
+        <!-- Lista de categorías existentes -->
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title mb-3">Categorías Existentes</h3>
+                <ul class="list-group">
+                    {% for categoria in categorias %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ categoria.nombre }}</span>
+                            <form method="POST" action="{% url 'insumos:eliminar_categoria' categoria.id %}" class="m-0">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item text-muted">No hay categorías registradas.</li>
+                    {% endfor %}
+                </ul>
+
+                <!-- Controles de paginación -->
+                <nav aria-label="Paginación de categorías" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        {% if categorias.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1" aria-label="Primera">
+                                    <span aria-hidden="true">&laquo;&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ categorias.previous_page_number }}" aria-label="Anterior">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&laquo;&laquo;</span>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link">&laquo;</span>
+                            </li>
+                        {% endif %}
+
+                        <li class="page-item active">
+                            <span class="page-link">
+                                Página {{ categorias.number }} de {{ categorias.paginator.num_pages }}
+                            </span>
+                        </li>
+
+                        {% if categorias.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ categorias.next_page_number }}" aria-label="Siguiente">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ categorias.paginator.num_pages }}" aria-label="Última">
+                                    <span aria-hidden="true">&raquo;&raquo;</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">&raquo;</span>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link">&raquo;&raquo;</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 {% endblock %}
