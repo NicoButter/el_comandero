@@ -8,7 +8,7 @@ from .models import Insumo, Categoria
 
 def agregar_insumo(request):
     if request.method == 'POST':
-        form = InsumoForm(request.POST)
+        form = InsumoForm(request.POST, request.FILES)  # ¡Aquí está el cambio!
         if form.is_valid():
             form.save()  # Guarda el nuevo insumo en la base de datos
             return redirect('insumos:listar_insumos')  # Redirige a la lista de insumos después de agregar uno
