@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'insumos/css/list_insumos_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Lista de Insumos</h2>
+    <table class="insumos-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for insumo in insumos %}
+            <tr>
+                <td>{{ insumo.nombre }}</td>
+                <td>{{ insumo.cantidad }}</td>
+                <td>{{ insumo.unidad }}</td>
+                <td>${{ insumo.precio }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay insumos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
