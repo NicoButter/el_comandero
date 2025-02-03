@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Crear un Producto{% endblock %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'products/css/create_product_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Crear Producto</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <h3>Ingredientes</h3>
+        {{ formset.management_form }}
+
+        <div id="formset-container">
+            {% for form in formset %}
+                <div class="form-inline">
+                    {{ form.as_p }}
+                    <button type="button" class="remove-form btn-remove">✖</button>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Botón para agregar un nuevo ingrediente -->
+        <button type="button" id="add-form">+ Agregar Ingrediente</button>
+
+        <button type="submit">Guardar Producto</button>
+    </form>
+</div>
+
+{% block extra_js %}
+    <script src="{% static 'products/js/formset_handler.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

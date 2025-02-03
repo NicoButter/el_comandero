@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('dashboards/', include('dashboards.urls')),
     path('insumos/', include('insumo.urls')),
+    path('products/', include('products.urls', namespace='products')),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('', RedirectView.as_view(url=reverse_lazy('login')), name='home'),
 ]
