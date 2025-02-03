@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'insumos/css/list_insumos_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'insumo/css/list_insumos_styles.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -11,26 +11,103 @@
     <table class="insumos-table">
         <thead>
             <tr>
+                <th>Acciones</th> <!-- Columna para las acciones -->
                 <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Unidad</th>
+                <th>Categoría</th>
+                <th>Cantidad Disponible</th>
+                <th>Unidad de Medida</th>
                 <th>Precio</th>
             </tr>
         </thead>
         <tbody>
             {% for insumo in insumos %}
             <tr>
+                <td>
+                    <!-- Icono para ver detalles -->
+                    <a href="#" class="btn btn-link p-0 me-2" data-bs-toggle="modal" data-bs-target="#detalleModal"
+                        data-nombre="{{ insumo.nombre }}"
+                        data-categoria="{{ insumo.categoria.nombre }}"
+                        data-costo="{{ insumo.costo }}"
+                        data-tipo="{{ insumo.get_tipo_display }}"
+                        data-imagen="{% if insumo.imagen %}{{ insumo.imagen.url }}{% else %}{% static 'images/default_image.jpeg' %}{% endif %}"
+                        data-descripcion="{{ insumo.descripcion }}"
+                        data-cantidad="{{ insumo.cantidad_disponible }}"
+                        data-unidad="{{ insumo.unidad_medida }}">
+                        <i class="fas fa-eye text-info"></i> <!-- Icono de ojo para ver detalles -->
+                    </a>
+
+                    <!-- Icono para eliminar -->
+                    <a href="{% url 'insumos:eliminar_insumo' insumo.id %}" class="btn btn-link p-0" onclick="return confirm('¿Estás seguro de que deseas eliminar este insumo?');">
+                        <i class="fas fa-trash-alt text-danger"></i> <!-- Icono de basura para eliminar -->
+                    </a>
+                </td>
                 <td>{{ insumo.nombre }}</td>
-                <td>{{ insumo.cantidad }}</td>
-                <td>{{ insumo.unidad }}</td>
-                <td>${{ insumo.precio }}</td>
+                <td>{{ insumo.categoria.nombre }}</td>
+                <td>{{ insumo.cantidad_disponible }}</td>
+                <td>{{ insumo.unidad_medida }}</td>
+                <td>${{ insumo.costo }}</td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4">No hay insumos registrados.</td>
+                <td colspan="6">No hay insumos registrados.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="detalleModal" tabindex="-1" role="dialog" aria-labelledby="detalleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalleModalLabel">Detalle del Insumo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+            <tr>
+                <th>Nombre</th>
+                <td id="modal-nombre"></td>
+            </tr>
+            <tr>
+                <th>Categoría</th>
+                <td id="modal-categoria"></td>
+            </tr>
+            <tr>
+                <th>Costo</th>
+                <td id="modal-costo"></td>
+            </tr>
+            <tr>
+                <th>Tipo de Compra</th>
+                <td id="modal-tipo"></td>
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td><img id="modal-imagen" width="100" alt="Imagen del Insumo"></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td id="modal-descripcion"></td>
+            </tr>
+            <tr>
+                <th>Cantidad Disponible</th>
+                <td id="modal-cantidad"></td>
+            </tr>
+            <tr>
+                <th>Unidad de Medida</th>
+                <td id="modal-unidad"></td>
+            </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'insumo/js/modal_list_insumo.js' %}"></script>
 {% endblock %}

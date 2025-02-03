@@ -11,7 +11,7 @@ def agregar_insumo(request):
         form = InsumoForm(request.POST)
         if form.is_valid():
             form.save()  # Guarda el nuevo insumo en la base de datos
-            return redirect('insumos:lista_insumos')  # Redirige a la lista de insumos después de agregar uno
+            return redirect('insumos:listar_insumos')  # Redirige a la lista de insumos después de agregar uno
     else:
         form = InsumoForm()
 
@@ -25,6 +25,20 @@ def listar_insumos(request):
 
 #----------------------------------------------------------------------------------------------------------
 
+def ver_detalle_insumo(request, insumo_id):
+    insumo = get_object_or_404(Insumo, id=insumo_id)
+    return render(request, 'insumo/ver_detalle_insumo.html', {'insumo': insumo})
+
+#----------------------------------------------------------------------------------------------------------
+
+def eliminar_insumo(request, insumo_id):
+    insumo = get_object_or_404(Insumo, id=insumo_id)
+    insumo.delete()
+    messages.success(request, "Insumo eliminado correctamente.")
+    return redirect('insumos:listar_insumos')
+
+#----------------------------------------------------------------------------------------------------------
+
 def administrar_categorias(request):
     if request.method == "POST":
         nueva_categoria = request.POST.get("nueva_categoria")
@@ -34,7 +48,7 @@ def administrar_categorias(request):
         return redirect("insumos:administrar_categorias")
 
     categorias = Categoria.objects.all()
-    return render(request, "insumo/administrar_categorias.html", {"categorias": categorias})
+    return render(request, "insumo/category_administration.html", {"categorias": categorias})
 
 #----------------------------------------------------------------------------------------------------------
 

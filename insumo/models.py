@@ -17,7 +17,7 @@ class Insumo(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     costo = models.DecimalField(max_digits=10, decimal_places=2)
     tipo = models.CharField(max_length=6, choices=CATEGORIA_CHOICES)
-    imagen = models.ImageField(upload_to='insumos/', blank=True, null=True)
+    imagen = models.ImageField(upload_to='insumos_images/', blank=True, null=True)
     descripcion = models.TextField()
     cantidad_disponible = models.DecimalField(max_digits=10, decimal_places=2)
     unidad_medida = models.CharField(max_length=20)

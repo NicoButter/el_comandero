@@ -1,0 +1,124 @@
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Estilos de la tabla */
+.insumos-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.insumos-table th,
+.insumos-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.insumos-table th {
+    background: #007bff;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.insumos-table tr:hover {
+    background: #f8f9fa;
+}
+
+.insumos-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+/* Estilos para los iconos de acciones */
+.btn-link {
+    padding: 0;
+    margin: 0 5px;
+    font-size: 1.2rem;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.btn-link:hover {
+    color: #0056b3;
+}
+
+.btn-link .fa-trash-alt {
+    color: #dc3545;
+}
+
+.btn-link .fa-trash-alt:hover {
+    color: #a71d2a;
+}
+
+/* Estilos para el modal */
+.modal-content {
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    background: #007bff;
+    color: white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-body img {
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .insumos-table th,
+    .insumos-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .btn-link {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .insumos-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .insumos-table th,
+    .insumos-table td {
+        white-space: nowrap;
+    }
+}
